@@ -1,0 +1,25 @@
+{
+  "name": "NoSpoilerHLTV",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "Silences spoilers (results) and annoying ads on the site",
+  "homepage_url": "http://github.com/gusnips/NoSpoilerHLTV",
+  "permissions": [
+    "*://*.hltv.org/*",
+    "webRequest",
+    "webRequestBlocking",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.hltv.org/*"
+      ],
+      "js": [
+        "vendors/jquery/jquery-2.1.4.min.js",
+        "contentscript.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}
