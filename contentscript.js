@@ -13,11 +13,7 @@ function inject() {
         };
     }(window.open);
 }
-
-var scriptTag = document.createElement("script");
-scriptTag.textContent = inject.toString() + " inject()";
-document.documentElement.appendChild(scriptTag);
-
+//ad links to remove
 var style =
     'html, body { background: white !important; }' +
     '#firstCollumn .boxNoDrag:first-child,' +
@@ -29,22 +25,22 @@ var style =
     'a[href*="bit.ly/2cUilNO"],' + //Hellcase
     'a[href*="skinsanity.gg"],' +
     'a[href*="egbaffiliates.com"],' +
+    'a[href*="34.gs"],' +
+    'a[href*="goo.gl/NQFwqv"],' +
+    'a[href*="skinsjar.com"],' +
     'a[href*="bitskins.com"] { display: none; }';
 
-var styleTag = document.createElement("style");
-styleTag.textContent = style;
-document.documentElement.appendChild(styleTag);
-
-$(document).ready(function() {
-    $('.topHolder a').each(function(i, v) {
-        if(v.hostname !== 'hltv.org' && v.hostname !== 'www.hltv.org') {
-            $(v).remove();
-        }
-    });
-
-    $('img[src*="txt_sponsors.gif"]').parents('li').hide();
-    $('a[href*="alphadraft.go2cloud.org"], iframe[src*="wombo.gg"], iframe[src*="gainskins.com"]').remove();
-    $('.resultLoser,.resultWinner,.matchScore').hide();
-    $('#menuPoint_content_Results .subMenuCell.leftMostCell:not(.subMenuCell.leftMostCell.rightMostCell)').hide();
-    $('.hotmatchbox .hotmatchbox span').hide();
+$(function() {
+  //add inject function
+  var scriptTag = document.createElement("script");
+  scriptTag.textContent = inject.toString() + " inject()";
+  document.documentElement.appendChild(scriptTag);
+  //inject styles
+  var styleTag = document.createElement("style");
+  styleTag.textContent = style;
+  document.documentElement.appendChild(styleTag);
+  //hide scores
+  $('.result-score .score-lost, .result-score .score-won, .team .lost, .team .won, .mapholder .results').html('');
+  $('.team-cell .bold').removeClass('bold');
+  $('.hotmatchbox .hotmatchbox span').hide();
 });
